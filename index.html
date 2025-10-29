@@ -19,7 +19,6 @@
       position: relative;
     }
 
-    /* Animated background gradient */
     body::before {
       content: "";
       position: absolute;
@@ -37,7 +36,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* CSS-generated stars */
     .stars, .stars::before, .stars::after {
       content: "";
       position: absolute;
@@ -54,16 +52,8 @@
       opacity: 0.5;
       z-index: 0;
     }
-    .stars::before {
-      transform: scale(1.5);
-      opacity: 0.3;
-      animation-duration: 160s;
-    }
-    .stars::after {
-      transform: scale(2);
-      opacity: 0.2;
-      animation-duration: 220s;
-    }
+    .stars::before { transform: scale(1.5); opacity: 0.3; animation-duration: 160s; }
+    .stars::after { transform: scale(2); opacity: 0.2; animation-duration: 220s; }
     @keyframes starDrift {
       from { background-position: 0 0; }
       to { background-position: -1000px 1000px; }
@@ -164,7 +154,7 @@
     </p>
 
     <div class="buttons">
-      <a href="#home" class="primary">Play Games</a>
+      <a href="home.html" class="primary">Play Games</a>
       <a href="https://github.com/" target="_blank" rel="noopener" class="secondary">View Source</a>
     </div>
 
