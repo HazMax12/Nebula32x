@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nebula32x</title>
+  <title>Nebula32x | Games</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -11,12 +11,11 @@
       font-family: "Inter", system-ui, sans-serif;
       color: #fff;
       background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+      min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-      min-height: 100vh;
     }
 
-    /* Animated nebula gradient */
     body::before {
       content: "";
       position: absolute;
@@ -28,13 +27,13 @@
       animation: gradientShift 18s ease infinite;
       z-index: 0;
     }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    /* Stars */
     .stars, .stars::before, .stars::after {
       content: "";
       position: absolute;
@@ -51,8 +50,10 @@
       opacity: 0.5;
       z-index: 0;
     }
+
     .stars::before { transform: scale(1.5); opacity: 0.3; animation-duration: 160s; }
     .stars::after { transform: scale(2); opacity: 0.2; animation-duration: 220s; }
+
     @keyframes starDrift {
       from { background-position: 0 0; }
       to { background-position: -1000px 1000px; }
@@ -60,64 +61,98 @@
 
     header {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       text-align: center;
-      padding: 3rem 1rem 1rem;
+      padding: 2rem 1rem;
+      animation: fadeUp 1s ease-out;
     }
-    header h1 {
-      font-size: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
       font-weight: 800;
       background: linear-gradient(to right, #60a5fa, #a855f7, #f472b6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: glow 3s ease-in-out infinite alternate;
     }
+
     @keyframes glow {
       from { text-shadow: 0 0 10px #7c3aed, 0 0 20px #9333ea; }
       to { text-shadow: 0 0 25px #60a5fa, 0 0 35px #a855f7; }
     }
 
-    .gallery {
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
       position: relative;
-      z-index: 2;
+      z-index: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      padding: 2rem 3rem 4rem;
+      padding: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      animation: fadeIn 1.5s ease-out;
     }
-    .game {
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .game-card {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 1rem;
-      backdrop-filter: blur(8px);
-      text-align: center;
-      padding: 1rem;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
-    .game:hover {
+
+    .game-card:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
     }
-    .game img {
+
+    .game-card img {
       width: 100%;
-      border-radius: 0.75rem;
-      height: 140px;
+      height: 160px;
       object-fit: cover;
     }
-    .game h2 {
-      margin-top: 0.75rem;
-      font-size: 1.1rem;
+
+    .game-info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .game-info h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+
+    .back {
+      display: inline-block;
+      margin: 2rem auto;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #60a5fa, #a855f7);
+      color: #fff;
+      text-decoration: none;
       font-weight: 600;
-      color: #e0e7ff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .back:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
     }
 
     footer {
-      position: relative;
-      z-index: 2;
       text-align: center;
-      padding-bottom: 2rem;
+      padding: 1rem;
       color: rgba(255, 255, 255, 0.6);
       font-size: 0.9rem;
     }
@@ -127,18 +162,21 @@
   <div class="stars"></div>
 
   <header>
-    <h1>Nebula32x</h1>
-    <p style="opacity:0.8; font-size:1.1rem;">Explore the universe of unblocked games</p>
+    <h1>Explore the Nebula</h1>
   </header>
 
-  <section class="gallery">
-    <a href="stealabrainrot.html" class="game">
-      <img src="https://via.placeholder.com/400x200/7e22ce/ffffff?text=Steal+a+Brainrot+(Fan+Made)" alt="Steal a Brainrot" />
-      <h2>Steal a Brainrot (Fan Made)</h2>
+  <main>
+    <a href="stealabrainrot.html" class="game-card">
+      <img src="https://via.placeholder.com/400x200?text=Steal+a+Brainrot" alt="Steal a Brainrot">
+      <div class="game-info">
+        <h2>Steal a Brainrot (Fan Made)</h2>
+      </div>
     </a>
+  </main>
 
-    <!-- Add more games here by copying this block -->
-  </section>
+  <div style="text-align:center;">
+    <a href="index.html" class="back">← Back to Main Menu</a>
+  </div>
 
   <footer>
     © <script>document.write(new Date().getFullYear())</script> Nebula32x
